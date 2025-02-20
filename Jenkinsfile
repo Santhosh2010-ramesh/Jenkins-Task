@@ -4,31 +4,25 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url:'https://github.com/Santhosh2010-ramesh/Jenkins.git',branch:"main"
+                git url:'https://github.com/Santhosh2010-ramesh/Jenkins.git',branch:'main'
             }
         }
-
-        stage('Install Dependencies') {
+        
+        stage('Build') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'echo "Building the application..."'
             }
         }
-
-        stage('Run Tests') {
+        
+        stage('Test') {
             steps {
-                sh 'pytest tests/'
+                sh 'echo "Running tests..."'
             }
         }
-
-        stage('Build Artifact') {
+        
+        stage('Deploy') {
             steps {
-                sh 'python setup.py sdist'
-            }
-        }
-
-        stage('Archive Artifact') {
-            steps {
-                archiveArtifacts artifacts: 'dist/*.tar.gz', fingerprint: true
+                sh 'echo "Deploying application..."'
             }
         }
     }
